@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import bemCssModules from 'bem-css-modules'
 
 import Modal from '../Modal/Modal'
@@ -42,6 +42,13 @@ const LoginForm = (handleOnClose, isModalOpen) => {
             setValidateMessage(data.message);
         }
     }
+
+    useEffect(() => {
+        if (isModalOpen) {
+            resetStateOfInput()
+        }
+        ;
+    }, [isModalOpen])
 
     const validateMessageComponent = validateMessage.length
         ? <p className={style('validate-message')}>{validateMessage}</p>
