@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState, createContext } from 'react'
 
 import request from '../helpers/request';
 
@@ -9,7 +9,7 @@ const StoreProvider = ({ children }) => {
     const [user, setUser] = useState(null)
 
     const fetchData = async () => {
-        const { data } = await request.get('courses');
+        const { data } = await request.get('/courses');
 
         setCourses(data.courses);
     }
@@ -18,18 +18,11 @@ const StoreProvider = ({ children }) => {
         fetchData();
     }, []);
 
-
     return (
-        <StoreContext.Provider value={
-            courses,
-            setCourses,
-            user,
-            setUser
-        }>
+        <StoreContext.Provider value={{ courses, setCourses, user, setUser }}>
             {children}
         </StoreContext.Provider>
-    }
-)
+    )
 };
 
 export default StoreProvider;
