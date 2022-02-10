@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import bemCssModules from 'bem-css-modules';
-import { StoreContext } from '../store/StoreProvider';
-import Courses from '../components/Courses/Courses'
+import { StoreContext } from '../../store/StoreProvider';
+import Courses from '../Courses/Courses';
+import UserCourses from '../UserCourses/UserCourses';
 import { default as ContentStyles } from './Content.module.scss';
 import { Routes, Route } from 'react-router-dom';
 
@@ -19,7 +20,7 @@ const Content = () => {
         <main className={style()}>
             <Routes>
                 <Route path='/' render={() => <Courses />} />
-                {isUserLogged && <Route path='/my-courses' render={() => <p>Moje kursy</p>} />}
+                {isUserLogged && <Route path='/my-courses' render={() => <UserCourses />} />}
                 {isAdmin && <Route path='/my-courses' render={() => <p>Zarządzanie kursami</p>} />}
             </Routes>
         </main>
