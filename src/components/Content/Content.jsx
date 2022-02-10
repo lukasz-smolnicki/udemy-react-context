@@ -5,6 +5,7 @@ import Courses from '../Courses/Courses';
 import UserCourses from '../UserCourses/UserCourses';
 import { default as ContentStyles } from './Content.module.scss';
 import { Routes, Route } from 'react-router-dom';
+import AdminPanel from '../AdminPanel/AdminPanel'
 
 const style = bemCssModules(ContentStyles);
 
@@ -21,7 +22,7 @@ const Content = () => {
             <Routes>
                 <Route path='/' render={() => <Courses />} />
                 {isUserLogged && <Route path='/my-courses' render={() => <UserCourses />} />}
-                {isAdmin && <Route path='/my-courses' render={() => <p>Zarządzanie kursami</p>} />}
+                {isAdmin && <Route path='/my-courses' render={() => <AdminPanel />} />}
             </Routes>
         </main>
     )
